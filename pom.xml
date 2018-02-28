@@ -31,6 +31,28 @@
 		<artifactId>log4j-core</artifactId>
 		<version>2.10.0</version>
 	</dependency>
+	<dependency>
+		<groupId>net.sf.jopt-simple</groupId>
+		<artifactId>jopt-simple</artifactId>
+		<version>4.9</version>
+	</dependency>
   </dependencies>
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>3.1.0</version>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>shade</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+</build>
   
 </project>
