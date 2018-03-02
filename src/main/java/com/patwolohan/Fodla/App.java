@@ -20,7 +20,7 @@ import	java.sql.Statement;
 /*****************************************************************
  *
  *	 Date:	2018
- *	 @author	PW
+ *	 @author PW
  *
  *	
  *	The	purpose	of	this	application	is	to	provide	an	example	for	the	following:
