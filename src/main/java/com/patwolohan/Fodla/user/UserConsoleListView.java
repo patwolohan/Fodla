@@ -20,7 +20,7 @@ public class UserConsoleListView {
 
 	public void display() {
 
-		System.out.println(ConsoleControls.ANSI_YELLOW_BRIGHT + "... PLAYLIST VIEWER ..." + ConsoleControls.ANSI_RESET);
+		System.out.println(ConsoleControls.ANSI_YELLOW_BRIGHT + "... USER VIEWER ..." + ConsoleControls.ANSI_RESET);
 		System.out.println("\n");
 		Iterator<User> iterator = this.userList.iterator();
 		while (iterator.hasNext()) {

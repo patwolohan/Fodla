@@ -18,6 +18,12 @@ import joptsimple.OptionException;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /*****************************************************************
  *
  * Date: 2018
@@ -41,8 +47,8 @@ import joptsimple.OptionSet;
  *         Eclipse usage notes - if you see a message cannot resolve to type and
  *         it is one of your own classes after import --A: try Menu, Project >
  *         Clean see if that resolves it - if you have created folders or you
- *         expect to see log files in the log folder after running the code byt
- *         don't see --A: try Meny, File > Refresh to refresh the Eclipse
+ *         expect to see log files in the log folder after running the code but
+ *         don't see --A: try Menu, File > Refresh to refresh the Eclipse
  *         package explorer tree
  *
  *****************************************************************/
@@ -77,6 +83,7 @@ public class App {
 
 		// set the database file
 		this.dbURL = dbURL;
+
 		// associate logging with this class so know the messages that came from objects
 		// of this class
 		LOG = LogManager.getLogger(App.class);
@@ -92,10 +99,12 @@ public class App {
 
 		// set the database file to use
 		DataManagerSQLite.getInstance().setDataFile(this.dbURL);
+
 		MenuBuilder theMenu = new MenuBuilder();
 
 		// theMenu.print();
 		// LOG.debug(theMenu.display());
+
 		theMenu.getMenu().display();
 
 		// pause before exit (this is only useful if an error occurs)
@@ -112,6 +121,7 @@ public class App {
 
 	// METHODS used by main() or debug methods - note they are static methods
 	// ............................................................
+
 	public String getDatabaseName() {
 		return this.dbURL;
 	}
@@ -136,13 +146,10 @@ public class App {
 			// define the allowed arguments
 			optionParser.acceptsAll(Arrays.asList("v", "verbose"),
 					"Set logging level to DEBUG to see all levels of log messages").forHelp();
-
 			optionParser.acceptsAll(Arrays.asList("h", "help"), "Display help/usage	information").forHelp();
-
 			optionParser.acceptsAll(Arrays.asList("r", "version"), "Display	program	version	information").forHelp();
-
 			optionParser.acceptsAll(Arrays.asList("d", "database"), "Path and name of database file.").withRequiredArg()
-					.ofType(String.class).describedAs("SQlite	database");
+					.ofType(String.class).describedAs("SQlite database");
 
 			final OptionSet options = optionParser.parse(args);
 
@@ -195,10 +202,10 @@ public class App {
 			// valid input so start the program with the name of the database to use
 			if (options.has("database") && options.has("verbose")) {
 				Level logLevel = Level.DEBUG;
-				System.out.println("RUN	WITH:	Database: " + dbURL + "	logging level requested: " + logLevel);
+				System.out.println("RUN	WITH:Database: " + dbURL + " logging level requested: " + logLevel);
 				App anApp = new App(dbURL, logLevel);
 			} else {
-				System.out.println("RUN	WITH: Database:	" + dbURL + " logging as per main/resources/Log4J2.xml");
+				System.out.println("RUN	WITH: Database: " + dbURL + " logging as per main/resources/Log4J2.xml");
 				App anApp = new App(dbURL);
 			}
 		} catch (OptionException argsEx) {
@@ -213,9 +220,10 @@ public class App {
 
 	/**
 	 * Write help message to standard output using the provided instance of
-	 * {@code	OptionParser}.
+	 * {@code OptionParser}.
 	 */
 	private static void printUsage(final OptionParser parser) {
+
 		try {
 			parser.printHelpOn(System.out);
 		} catch (IOException ioEx) {

@@ -4,8 +4,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Instantiate an object of a classed based on being supplied the class name as
- * a string parameter. The object is returned as an object of class Object the
+ * Instantiate an object of a class based on being supplied the class name as a
+ * string parameter. The object is returned as an object of class Object the
  * lowest level Java class from which all other classes extend. The returned
  * object must be cast to the class required.
  *

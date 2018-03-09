@@ -12,8 +12,8 @@ public class UserViewMenuItem implements IExecutable {
 	public void execute() {
 
 		// System.out.println("I ran: " + UserViewMenuItem.class.getName());
-		// Get the User data
 
+		// Get the User data
 		UserDAO model = new UserDAO(DataManagerSQLite.getInstance());
 		UserConsoleListView view = new UserConsoleListView();
 		UserController controller = new UserController(view, model);

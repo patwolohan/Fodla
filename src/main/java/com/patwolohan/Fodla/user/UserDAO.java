@@ -1,6 +1,7 @@
 package com.patwolohan.Fodla.user;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -72,6 +73,7 @@ public class UserDAO implements IUserDAO {
 			// it probably means no database file is found
 			LOG.error(e.getMessage());
 		} finally {
+
 			try {
 				if (connection != null)
 					this.dataManager.disconnect();

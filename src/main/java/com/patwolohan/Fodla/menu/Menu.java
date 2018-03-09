@@ -24,13 +24,16 @@ import java.util.Scanner;
 public class Menu extends MenuWidget {
 
 	ArrayList<MenuWidget> menu = new ArrayList<MenuWidget>();
+
 	String name;
 	String description;
+
 	int selection;
 	Scanner input = new Scanner(System.in);
 
 	// generic object factory
 	Factory f = Factory.getFactory();
+
 	// Factory method pattern version
 	MenuItemFactory executorFactory = new MenuItemFactory();
 
@@ -102,29 +105,30 @@ public class Menu extends MenuWidget {
 
 				exitMenu = 1;
 			} else if (menuOfExecutors.containsKey(this.selection)) {
+
 				if (menuOfExecutors.get(this.selection).equalsIgnoreCase("undefinedMenuItem")) {
 					System.out.println(ConsoleControls.ANSI_YELLOW + "picked :	" + menuOfExecutors.get(this.selection)
 							+ ConsoleControls.ANSI_RESET);
 				} else {
 					ConsoleControls.clearConsole();
 					// Generic Factory Call
-
-					try {
-						Object obj = f.getObject(menuOfExecutors.get(this.selection));
-						exe = (IExecutable) obj;
-						exe.execute();
-					} catch (FactoryException fe) {
-						System.out.println(ConsoleControls.ANSI_RED + "Failed to create instance : "
-								+ menuOfExecutors.get(this.selection) + ConsoleControls.ANSI_RESET);
-					}
+					/*
+					 * try { Object obj = f.getObject(menuOfExecutors.get(this.selection)); exe =
+					 * (IExecutable) obj; exe.execute(); } catch (FactoryException fe) {
+					 * System.out.println(ConsoleControls.ANSI_RED + "Failed to create instance : "
+					 * + menuOfExecutors.get(this.selection) + ConsoleControls.ANSI_RESET); }
+					 */
 
 					// Factory Method Pattern version
+
 					executorFactory.getMenuItem(menuOfExecutors.get(this.selection)).execute();
 				}
 			} else {
+
 				System.out.println(ConsoleControls.ANSI_RED + "	>>	Invalid	option" + ConsoleControls.ANSI_RESET);
 			}
 		} while (exitMenu == 0);
+
 	}// EOM
 
 	@Override
